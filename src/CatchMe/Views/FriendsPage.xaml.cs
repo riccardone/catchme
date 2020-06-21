@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CatchMe.Models;
+using CatchMe.ViewModels;
+using System;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,33 +10,44 @@ namespace CatchMe.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FriendsPage : ContentPage
     {
-        public ObservableCollection<string> Items { get; set; }
+        FriendsViewModel viewModel;
 
         public FriendsPage()
         {
             InitializeComponent();
 
-            Items = new ObservableCollection<string>
-            {
-                "Item 1",
-                "Item 2",
-                "Item 3",
-                "Item 4",
-                "Item 5"
-            };
-
-            MyListView.ItemsSource = Items;
+            BindingContext = viewModel = new FriendsViewModel();
         }
 
-        async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        async void OnItemSelected(object sender, EventArgs args)
         {
-            if (e.Item == null)
-                return;
-
-            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
-
-            //Deselect Item
-            ((ListView)sender).SelectedItem = null;
+            var layout = (BindableObject)sender;
+            var friend = (Friend)layout.BindingContext;
+            await Navigation.PushAsync(new FriendDetailPage(new FriendDetailViewModel(friend)));
         }
+
+        async void AddItem_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new NewFriendPage()));
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (viewModel.Friends.Count == 0)
+                viewModel.IsBusy = true;
+        }
+
+        //async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        //{
+        //    if (e.Item == null)
+        //        return;
+
+        //    await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
+
+        //    //Deselect Item
+        //    ((ListView)sender).SelectedItem = null;
+        //}
     }
 }

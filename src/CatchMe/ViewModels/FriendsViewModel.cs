@@ -12,13 +12,13 @@ namespace CatchMe.ViewModels
 {
     public class FriendsViewModel : BaseViewModel
     {
-        public ObservableCollection<Friend> Items { get; set; }
+        public ObservableCollection<Friend> Friends { get; set; }
         public Command LoadItemsCommand { get; set; }
 
         public FriendsViewModel()
         {
             Title = "Friends";
-            Items = new ObservableCollection<Friend>();
+            Friends = new ObservableCollection<Friend>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
@@ -36,11 +36,11 @@ namespace CatchMe.ViewModels
 
             try
             {
-                Items.Clear();
+                Friends.Clear();
                 var items = await FriendsDataStore.GetAsync();
                 foreach (var item in items)
                 {
-                    Items.Add(item);
+                    Friends.Add(item);
                 }
             }
             catch (Exception ex)

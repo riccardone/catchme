@@ -15,8 +15,8 @@
                 </OnPlatform>
             </NavigationPage.Icon>
             <x:Arguments>
-                <views:ItemsPage />
-                <!--<views:FriendsPage />-->
+                <!--<views:ItemsPage />-->
+                <views:FriendsPage />
             </x:Arguments>
         </NavigationPage>
         

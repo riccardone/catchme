@@ -14,14 +14,18 @@ namespace CatchMe
         //If using other emulators besides stock Google images you may need to adjust the IP address
         public static string AzureBackendUrl =
             DeviceInfo.Platform == DevicePlatform.Android ? "https://10.0.2.2:5001" : "https://localhost:5001";
-        public static bool UseMockDataStore = false;
+        public static bool UseMockDataStore = true;
 
         public App()
         {
             InitializeComponent();
 
             if (UseMockDataStore)
+            {
                 DependencyService.Register<MockDataStore>();
+                DependencyService.Register<MockFriendStore>();
+                DependencyService.Register<MockFriendRequestStore>();
+            }                
             else
                 DependencyService.Register<DataStore>();
             MainPage = new MainPage();
