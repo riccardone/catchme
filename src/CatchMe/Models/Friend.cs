@@ -4,6 +4,7 @@ namespace CatchMe.Models
 {
     public class Friend
     {
+        public string ColorCode { get; set; }
         public string DisplayName { get; set; }
         public Location LastLocation { get; set; }
         public bool RequestReceived { get; set; }
