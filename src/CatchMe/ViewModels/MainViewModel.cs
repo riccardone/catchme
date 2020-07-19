@@ -31,7 +31,7 @@ namespace CatchMe.ViewModels
                 FriendSessionId = Guid.NewGuid(),
                 Heading = 100,
                 HeBlockedMe = false,
-                LastLocation = new Location { Latitude = 100.90, Longitude = 1.5 },
+                LastLocation = new Location { Latitude = -33.981818, Longitude = -54.14164 },
                 ModifiedAt = DateTime.Now,
                 PictureUrl = new Uri("https://i2.wp.com/www.dinuzzo.co.uk/wp-content/uploads/2014/07/FB_20150122_16_30_10_Saved_Picture.jpg"),
                 RequestReceived = false,

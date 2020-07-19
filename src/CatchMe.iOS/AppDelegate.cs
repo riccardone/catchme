@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using CatchMe.Services;
 using Foundation;
 using UIKit;
 
@@ -22,12 +22,16 @@ namespace CatchMe.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            Mapbox.MGLAccountManager.AccessToken = MapBoxService.AccessToken;
+            new Naxam.Controls.Mapbox.Platform.iOS.MapViewRenderer();
+
             System.Net.ServicePointManager.ServerCertificateValidationCallback += (o, cert, chain, errors) => true;
 
             global::Xamarin.Forms.Forms.Init();
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
-        }
+        }       
     }
 }

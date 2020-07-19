@@ -21,7 +21,7 @@ namespace CatchMe.ViewModels
             Friends = new ObservableCollection<Friend>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
+            MessagingCenter.Subscribe<NewFriendPage, Item>(this, "AddFriend", async (obj, item) =>
             {              
                 throw new NotImplementedException("add item is called FriendsViewModel");
                 //var newItem = item as Item;
