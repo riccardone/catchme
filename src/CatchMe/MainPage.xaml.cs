@@ -1,4 +1,5 @@
-﻿using CatchMe.ViewModels;
+﻿using CatchMe.Services;
+using CatchMe.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace CatchMe
         {
             InitializeComponent();
 
-            BindingContext = new MainViewModel(Navigation);
+            BindingContext = new MainViewModel(Navigation, new MockFriendStore());
         }
     }
 }

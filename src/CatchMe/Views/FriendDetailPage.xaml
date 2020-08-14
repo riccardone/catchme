@@ -7,8 +7,5 @@
              mc:Ignorable="d"
              x:Class="CatchMe.Views.FriendDetailPage"
              Title="{Binding Title}">   
-        <nx:MapView x:Name="map" 
-                    ShowUserLocation="True"
-                    UserLocation="{Binding UserLocation}"
-                    VerticalOptions="FillAndExpand" />          
+        <nx:MapView x:Name="map"  />          
 </ContentPage>
